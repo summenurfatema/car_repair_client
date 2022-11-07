@@ -4,6 +4,7 @@ import Home from "../../pages/Home/Home";
 import Login from "../../pages/Login/Login";
 import Orders from "../../pages/Orders/Orders";
 import SignUp from "../../pages/SignUp/SignUp";
+import PrivateRoute from '../PrivateRoute/PrivateRoute'
 
 const { createBrowserRouter } = require("react-router-dom");
 
@@ -30,8 +31,8 @@ const router = createBrowserRouter([
             },
             {
                 path: '/checkout/:id',
-                element: <Checkout></Checkout>,
-                loader: ({ params }) => fetch(`http://localhost:5000/services/${params.id}`)
+                element: <PrivateRoute><Checkout></Checkout></PrivateRoute>,
+                loader: ({ params }) => fetch(`https://car-repair-server-dun.vercel.app/services/${params.id}`)
 
             }
         ]

@@ -15,7 +15,7 @@ const Orders = () => {
 
 
     useEffect(() => {
-        fetch(`http://localhost:5000/orders?email=${user?.email}`)
+        fetch(`https://car-repair-server-dun.vercel.app/orders?email=${user?.email}`)
             .then(res => res.json())
             .then(data => setOrders(data))
 
@@ -26,7 +26,7 @@ const Orders = () => {
 
         const proced = window.confirm('Are you sure to delete this order ?')
         if (proced) {
-            fetch(`http://localhost:5000/orders/${_id}`, {
+            fetch(`https://car-repair-server-dun.vercel.app/orders/${_id}`, {
                 method: 'DELETE'
             })
                 .then(res => res.json())

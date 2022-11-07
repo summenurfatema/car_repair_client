@@ -1,14 +1,28 @@
-import React from 'react';
+import React, { useContext } from 'react';
 import { Link } from 'react-router-dom';
+import { AuthContext } from '../../../context/UserContext'
 
 const Header = () => {
+    const { user, logOut } = useContext(AuthContext)
 
     const headerMenu = <>
-        <li className='font-bold text-2xl'><Link to='/home'>Home</Link></li>
-        <li className='font-bold text-2xl'><Link to='/login'>Login</Link></li>
-        <li className='font-bold text-2xl'><Link to='/signup'>SignUp</Link></li>
-        <li className='font-bold text-2xl'><Link to='/orders'>Orders</Link></li>
+        <li className='font-bold text-2xl'><Link to='/'>Home</Link></li>
+        {
+            user?.email ?
+                <>
+                    <li className='font-bold text-2xl'><Link to='/orders'>Orders</Link></li>
+                    <button className='btn btn-ghost font-bold text-2xl pt-3' onClick={logOut}>Sign Out</button>
+
+                </>
+                :
+                <>
+
+                    <li className='font-bold text-2xl'><Link to='/login'>Login</Link></li>
+                    <li className='font-bold text-2xl'><Link to='/signup'>SignUp</Link></li>
+                </>
+        }
     </>
+
     return (
         <div className="navbar bg-base-100">
             <div className="navbar-start">
